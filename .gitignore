@@ -1,0 +1,9 @@
+build/*
+build/linux/*
+build/web/*
+!build/linux/.gitkeep
+!build/web/.gitkeep
+
+.cache/
+.vs/
+out/
