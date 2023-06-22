@@ -88,6 +88,9 @@ public:
 
     ~Log()
     {
+			#ifdef __EMSCRIPTEN__
+			        return;
+			#endif
 
             if constexpr (not m_EnableLog)
                 return;

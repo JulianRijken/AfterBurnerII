@@ -4,7 +4,7 @@ cmake_minimum_required(VERSION 3.18)
 set(PROJECT_NAME "AfterBurnerII")
 
 # Web options
-set(ASPECT_RATIO "4/3")
+set(ASPECT_RATIO "320/224")
 set(CLICK_TO_START ON) # a click is needed to activate sound!
 
 # --------------------------------------

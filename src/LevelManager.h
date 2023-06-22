@@ -64,50 +64,50 @@ public:
 	struct LevelObject
 	{
 		std::weak_ptr<GameObject> gameObjectWPtr{};
-		float effectMultiplier{1.0f};
-		bool destroyBehindCamera;
+		float effectMultiplier{ 1.0f };
+		bool destroyBehindCamera{};
 	};
 
 	// The spawn delay, offset and enemy type
 	struct EnemySpawnSettings
 	{
-		float delay{0.0f};
+		float delay{ 0.0f };
 		EnemyType enemyType{};
-		Vector2f offset{0.0f,0.0f};
+		Vector2f offset{};
 	};
 
 
 
 	struct EnemySpawnConfig
 	{
-		std::string spriteName{"EnemyClose_Blue"};
+		std::string spriteName{ "EnemyClose_Blue" };
 		Vector3f colliderSize{ 2.2f,2.2f,0.5f };
 		Vector3f colliderCenter{ 0.0f,0.0f,0.0f };
-		Tag tag{Tag::TargetEnemy};
+		Tag tag{ Tag::TargetEnemy };
 
-		Vector3f scale{1.0f,1.0f,1.0f};
+		Vector3f scale{ 1.0f,1.0f,1.0f };
 
-		bool canBeDestroyed{true};
+		bool canBeDestroyed{ true };
 
 		EnemyClass enemyClass{ EnemyClass::PathEnemy };
 
 		// Dynamic enemy
 		float startDelay{ 0.0f };
-		float moveDuration{3.5f};
-		Vector3f curveCenter{Vector3f{0,0,0}};
-		Vector2f curveScale{0.0f,0.0f};
+		float moveDuration{ 3.5f };
+		Vector3f curveCenter{ Vector3f{0,0,0} };
+		Vector2f curveScale{ 0.0f,0.0f };
 		Jul::CubicCurve curve{};
-		float rocketDelay{0.0f};
-		float animationDelay{0.0f};
-		float animationDuration{0.0f};
-		std::string animationName{""};
+		float rocketDelay{ 0.0f };
+		float animationDelay{ 0.0f };
+		float animationDuration{ 0.0f };
+		std::string animationName{ "" };
 	};
 
 	struct SpawnSet
 	{
-		float delayBefore;
+		float delayBefore{ 0.0f };
 		std::vector<EnemySpawnSettings> spawnSettingsVector{};
-		float delayAfter;
+		float delayAfter{ 0.0f };
 	};
 
 	struct Stage
@@ -243,11 +243,11 @@ private:
 				{
 					2.0f,
 					{
-						{0.0f,EnemyType::CloseCurvePastRight },
-						{0.5f,EnemyType::CloseCurvePastRight},
-						{1.0f,EnemyType::CloseCurvePastLeft },
-						{1.5f,EnemyType::CloseCurvePastRight },
-						{2.0f,EnemyType::CloseCurvePastRight},
+						{0.0f,EnemyType::CloseCurvePastRight,Vector2f{}},
+						{0.5f,EnemyType::CloseCurvePastRight,Vector2f{}},
+						{1.0f,EnemyType::CloseCurvePastLeft ,Vector2f{}},
+						{1.5f,EnemyType::CloseCurvePastRight,Vector2f{}},
+						{2.0f,EnemyType::CloseCurvePastRight,Vector2f{}},
 					},
 					5.0f
 				},
@@ -255,10 +255,10 @@ private:
 				{
 					0.0f,
 					{
-						{0.0f,EnemyType::CloseCurveSideLeft },
-						{0.5f,EnemyType::CloseCurvePastRight},
-						{1.0f,EnemyType::CloseCurvePastLeft },
-						{1.5f,EnemyType::CloseCurvePastRight },
+						{0.0f,EnemyType::CloseCurveSideLeft ,Vector2f{}},
+						{0.5f,EnemyType::CloseCurvePastRight,Vector2f{}},
+						{1.0f,EnemyType::CloseCurvePastLeft ,Vector2f{}},
+						{1.5f,EnemyType::CloseCurvePastRight,Vector2f{}},
 					},
 					2.0f
 				},
@@ -295,16 +295,16 @@ private:
 				{
 					2.0f,
 					{
-						{0.0f,EnemyType::CloseCurvePastBarrleLeft },
-						{0.5f,EnemyType::CloseCurvePastBarrleRight},
-						{1.0f,EnemyType::CloseCurvePastBarrleLeft },
-						{1.5f,EnemyType::CloseCurveSideLeft },
-						{1.5f,EnemyType::CloseCurveSideRight },
-						{2.0f,EnemyType::CloseCurvePastBarrleRight },
-						{2.5f,EnemyType::CloseCurvePastBarrleLeft},
-						{3.0f,EnemyType::CloseCurvePastBarrleRight},
-						{4.0f,EnemyType::CloseCurvePastRight},
-						{5.0f,EnemyType::CloseCurvePastLeft},
+						{0.0f,EnemyType::CloseCurvePastBarrleLeft	,Vector2f{}},
+						{0.5f,EnemyType::CloseCurvePastBarrleRight	,Vector2f{}},
+						{1.0f,EnemyType::CloseCurvePastBarrleLeft	,Vector2f{}},
+						{1.5f,EnemyType::CloseCurveSideLeft			,Vector2f{}},
+						{1.5f,EnemyType::CloseCurveSideRight		,Vector2f{}},
+						{2.0f,EnemyType::CloseCurvePastBarrleRight  ,Vector2f{}},
+						{2.5f,EnemyType::CloseCurvePastBarrleLeft	,Vector2f{}},
+						{3.0f,EnemyType::CloseCurvePastBarrleRight	,Vector2f{}},
+						{4.0f,EnemyType::CloseCurvePastRight		,Vector2f{}},
+						{5.0f,EnemyType::CloseCurvePastLeft			,Vector2f{}},
 					},
 					8.0f
 				},
@@ -314,7 +314,7 @@ private:
 		Stage // 2 Desert
 		{
 			Color4f{0.96471f, 0.65490f, 0.00000f, 1},
-			Color4f{0.94902f, 0.78431f, 0.39608f, 1}, 
+			Color4f{0.94902f, 0.78431f, 0.39608f, 1},
 			Color4f{0.90588f, 0.68627f, 0.34118f  , 1.0f},
 
 			Color4f{0.97255f, 0.64314f, 0.06275f,1},
@@ -335,13 +335,13 @@ private:
 				{
 					0.0f,
 					{
-						{0.0f,EnemyType::CloseCurvePastRight },
-						{0.5f,EnemyType::CloseCurvePastRight},
-						{1.0f,EnemyType::CloseCurvePastLeft },
-						{1.5f,EnemyType::CloseCurvePastRight },
-						{2.0f,EnemyType::CloseCurvePastRight},
-						{3.0f,EnemyType::CloseCurvePastBarrleLeft},
-						{4.0f,EnemyType::CloseCurvePastBarrleRight},
+						{0.0f,EnemyType::CloseCurvePastRight      ,Vector2f{}},
+						{0.5f,EnemyType::CloseCurvePastRight      ,Vector2f{}},
+						{1.0f,EnemyType::CloseCurvePastLeft       ,Vector2f{}},
+						{1.5f,EnemyType::CloseCurvePastRight      ,Vector2f{}},
+						{2.0f,EnemyType::CloseCurvePastRight      ,Vector2f{}},
+						{3.0f,EnemyType::CloseCurvePastBarrleLeft ,Vector2f{}},
+						{4.0f,EnemyType::CloseCurvePastBarrleRight,Vector2f{}},
 					},
 					5.0f
 				},
@@ -605,7 +605,7 @@ private:
 			Color4f{0.96f, 0.66f, 0.1f, 1.0f},
 
 			Color4f{0.82f, 0.66f, 0.38f, 1.0f},
-			true, 
+			true,
 
 			Color4f{0,0,0,0},
 			false,
@@ -621,16 +621,16 @@ private:
 				{
 					4.0f,
 					{
-						{ 0.0f * 0.8f ,EnemyType::Pillar,Vector2f{sinf( 0.0f / 2.5f) * 6.0f + 7, 0.0f} },
-						{ 1.0f * 0.8f ,EnemyType::Pillar,Vector2f{sinf( 1.0f / 2.5f) * 6.0f + 7, 0.0f} },
-						{ 2.0f * 0.8f ,EnemyType::Pillar,Vector2f{sinf( 2.0f / 2.5f) * 6.0f + 7, 0.0f} },
-						{ 3.0f * 0.8f ,EnemyType::Pillar,Vector2f{sinf( 3.0f / 2.5f) * 6.0f + 7, 0.0f} },
-						{ 4.0f * 0.8f ,EnemyType::Pillar,Vector2f{sinf( 4.0f / 2.5f) * 6.0f + 7, 0.0f} },
-						{ 5.0f * 0.8f ,EnemyType::Pillar,Vector2f{sinf( 5.0f / 2.5f) * 6.0f + 7, 0.0f} },
-						{ 6.0f * 0.8f ,EnemyType::Pillar,Vector2f{sinf( 6.0f / 2.5f) * 6.0f + 7, 0.0f} },
-						{ 7.0f * 0.8f ,EnemyType::Pillar,Vector2f{sinf( 7.0f / 2.5f) * 6.0f + 7, 0.0f} },
-						{ 8.0f * 0.8f ,EnemyType::Pillar,Vector2f{sinf( 8.0f / 2.5f) * 6.0f + 7, 0.0f} },
-						{ 9.0f * 0.8f ,EnemyType::Pillar,Vector2f{sinf( 9.0f / 2.5f) * 6.0f + 7, 0.0f} },
+						{ 0.0f * 0.8f ,EnemyType::Pillar,Vector2f{sinf(0.0f / 2.5f) * 6.0f + 7, 0.0f} },
+						{ 1.0f * 0.8f ,EnemyType::Pillar,Vector2f{sinf(1.0f / 2.5f) * 6.0f + 7, 0.0f} },
+						{ 2.0f * 0.8f ,EnemyType::Pillar,Vector2f{sinf(2.0f / 2.5f) * 6.0f + 7, 0.0f} },
+						{ 3.0f * 0.8f ,EnemyType::Pillar,Vector2f{sinf(3.0f / 2.5f) * 6.0f + 7, 0.0f} },
+						{ 4.0f * 0.8f ,EnemyType::Pillar,Vector2f{sinf(4.0f / 2.5f) * 6.0f + 7, 0.0f} },
+						{ 5.0f * 0.8f ,EnemyType::Pillar,Vector2f{sinf(5.0f / 2.5f) * 6.0f + 7, 0.0f} },
+						{ 6.0f * 0.8f ,EnemyType::Pillar,Vector2f{sinf(6.0f / 2.5f) * 6.0f + 7, 0.0f} },
+						{ 7.0f * 0.8f ,EnemyType::Pillar,Vector2f{sinf(7.0f / 2.5f) * 6.0f + 7, 0.0f} },
+						{ 8.0f * 0.8f ,EnemyType::Pillar,Vector2f{sinf(8.0f / 2.5f) * 6.0f + 7, 0.0f} },
+						{ 9.0f * 0.8f ,EnemyType::Pillar,Vector2f{sinf(9.0f / 2.5f) * 6.0f + 7, 0.0f} },
 						{10.0f * 0.8f ,EnemyType::Pillar,Vector2f{sinf(10.0f / 2.5f) * 6.0f + 7, 0.0f} },
 						{11.0f * 0.8f ,EnemyType::Pillar,Vector2f{sinf(11.0f / 2.5f) * 6.0f + 7, 0.0f} },
 						{12.0f * 0.8f ,EnemyType::Pillar,Vector2f{sinf(12.0f / 2.5f) * 6.0f + 7, 0.0f} },
@@ -639,16 +639,16 @@ private:
 						{15.0f * 0.8f ,EnemyType::Pillar,Vector2f{sinf(15.0f / 2.5f) * 6.0f + 7, 0.0f} },
 						{16.0f * 0.8f ,EnemyType::Pillar,Vector2f{sinf(16.0f / 2.5f) * 6.0f + 7, 0.0f} },
 						{17.0f * 0.8f ,EnemyType::Pillar,Vector2f{sinf(17.0f / 2.5f) * 6.0f + 7, 0.0f} },
-						{ 0.0f * 0.8f ,EnemyType::Pillar,Vector2f{sinf( 0.0f / 2.5f) * 6.0f - 7 ,0.0f} },
-						{ 1.0f * 0.8f ,EnemyType::Pillar,Vector2f{sinf( 1.0f / 2.5f) * 6.0f - 7 ,0.0f} },
-						{ 2.0f * 0.8f ,EnemyType::Pillar,Vector2f{sinf( 2.0f / 2.5f) * 6.0f - 7 ,0.0f} },
-						{ 3.0f * 0.8f ,EnemyType::Pillar,Vector2f{sinf( 3.0f / 2.5f) * 6.0f - 7 ,0.0f} },
-						{ 4.0f * 0.8f ,EnemyType::Pillar,Vector2f{sinf( 4.0f / 2.5f) * 6.0f - 7 ,0.0f} },
-						{ 5.0f * 0.8f ,EnemyType::Pillar,Vector2f{sinf( 5.0f / 2.5f) * 6.0f - 7 ,0.0f} },
-						{ 6.0f * 0.8f ,EnemyType::Pillar,Vector2f{sinf( 6.0f / 2.5f) * 6.0f - 7 ,0.0f} },
-						{ 7.0f * 0.8f ,EnemyType::Pillar,Vector2f{sinf( 7.0f / 2.5f) * 6.0f - 7 ,0.0f} },
-						{ 8.0f * 0.8f ,EnemyType::Pillar,Vector2f{sinf( 8.0f / 2.5f) * 6.0f - 7 ,0.0f} },
-						{ 9.0f * 0.8f ,EnemyType::Pillar,Vector2f{sinf( 9.0f / 2.5f) * 6.0f - 7 ,0.0f} },
+						{ 0.0f * 0.8f ,EnemyType::Pillar,Vector2f{sinf(0.0f / 2.5f) * 6.0f - 7 ,0.0f} },
+						{ 1.0f * 0.8f ,EnemyType::Pillar,Vector2f{sinf(1.0f / 2.5f) * 6.0f - 7 ,0.0f} },
+						{ 2.0f * 0.8f ,EnemyType::Pillar,Vector2f{sinf(2.0f / 2.5f) * 6.0f - 7 ,0.0f} },
+						{ 3.0f * 0.8f ,EnemyType::Pillar,Vector2f{sinf(3.0f / 2.5f) * 6.0f - 7 ,0.0f} },
+						{ 4.0f * 0.8f ,EnemyType::Pillar,Vector2f{sinf(4.0f / 2.5f) * 6.0f - 7 ,0.0f} },
+						{ 5.0f * 0.8f ,EnemyType::Pillar,Vector2f{sinf(5.0f / 2.5f) * 6.0f - 7 ,0.0f} },
+						{ 6.0f * 0.8f ,EnemyType::Pillar,Vector2f{sinf(6.0f / 2.5f) * 6.0f - 7 ,0.0f} },
+						{ 7.0f * 0.8f ,EnemyType::Pillar,Vector2f{sinf(7.0f / 2.5f) * 6.0f - 7 ,0.0f} },
+						{ 8.0f * 0.8f ,EnemyType::Pillar,Vector2f{sinf(8.0f / 2.5f) * 6.0f - 7 ,0.0f} },
+						{ 9.0f * 0.8f ,EnemyType::Pillar,Vector2f{sinf(9.0f / 2.5f) * 6.0f - 7 ,0.0f} },
 						{10.0f * 0.8f ,EnemyType::Pillar,Vector2f{sinf(10.0f / 2.5f) * 6.0f - 7 ,0.0f} },
 						{11.0f * 0.8f ,EnemyType::Pillar,Vector2f{sinf(11.0f / 2.5f) * 6.0f - 7 ,0.0f} },
 						{12.0f * 0.8f ,EnemyType::Pillar,Vector2f{sinf(12.0f / 2.5f) * 6.0f - 7 ,0.0f} },
@@ -659,19 +659,19 @@ private:
 						{17.0f * 0.8f ,EnemyType::Pillar,Vector2f{sinf(17.0f / 2.5f) * 6.0f - 7 ,0.0f} },
 
 
-						{ 1.0f * 0.8f ,EnemyType::Tower,Vector2f{sinf( 1.0f / 2.5f) * 6.0f, 0.0f} },
-						{ 2.0f * 0.8f ,EnemyType::Tents,Vector2f{sinf( 2.0f / 2.5f) * 6.0f, 0.0f} },
-						{ 5.0f * 0.8f ,EnemyType::Tents,Vector2f{sinf( 5.0f / 2.5f) * 6.0f, 0.0f} },
-						{ 7.0f * 0.8f ,EnemyType::Tower,Vector2f{sinf( 7.0f / 2.5f) * 6.0f, 0.0f} },
-						{ 8.0f * 0.8f ,EnemyType::Truck,Vector2f{sinf( 8.0f / 2.5f) * 6.0f, 0.0f} },
+						{ 1.0f * 0.8f ,EnemyType::Tower,Vector2f{sinf(1.0f / 2.5f) * 6.0f, 0.0f} },
+						{ 2.0f * 0.8f ,EnemyType::Tents,Vector2f{sinf(2.0f / 2.5f) * 6.0f, 0.0f} },
+						{ 5.0f * 0.8f ,EnemyType::Tents,Vector2f{sinf(5.0f / 2.5f) * 6.0f, 0.0f} },
+						{ 7.0f * 0.8f ,EnemyType::Tower,Vector2f{sinf(7.0f / 2.5f) * 6.0f, 0.0f} },
+						{ 8.0f * 0.8f ,EnemyType::Truck,Vector2f{sinf(8.0f / 2.5f) * 6.0f, 0.0f} },
 						{13.0f * 0.8f ,EnemyType::Tents,Vector2f{sinf(13.0f / 2.5f) * 6.0f, 0.0f} },
 						{14.0f * 0.8f ,EnemyType::Truck,Vector2f{sinf(14.0f / 2.5f) * 6.0f, 0.0f} },
 						{15.0f * 0.8f ,EnemyType::Tents,Vector2f{sinf(15.0f / 2.5f) * 6.0f, 0.0f} },
-						{ 1.5f * 0.8f ,EnemyType::Tower,Vector2f{sinf( 1.0f / 2.5f) * 6.0f ,0.0f} },
-						{ 2.5f * 0.8f ,EnemyType::Truck,Vector2f{sinf( 2.0f / 2.5f) * 6.0f ,0.0f} },
-						{ 3.5f * 0.8f ,EnemyType::Tents,Vector2f{sinf( 3.0f / 2.5f) * 6.0f ,0.0f} },
-						{ 6.5f * 0.8f ,EnemyType::Tents,Vector2f{sinf( 6.0f / 2.5f) * 6.0f ,0.0f} },
-						{ 7.5f * 0.8f ,EnemyType::Tents,Vector2f{sinf( 7.0f / 2.5f) * 6.0f ,0.0f} },
+						{ 1.5f * 0.8f ,EnemyType::Tower,Vector2f{sinf(1.0f / 2.5f) * 6.0f ,0.0f} },
+						{ 2.5f * 0.8f ,EnemyType::Truck,Vector2f{sinf(2.0f / 2.5f) * 6.0f ,0.0f} },
+						{ 3.5f * 0.8f ,EnemyType::Tents,Vector2f{sinf(3.0f / 2.5f) * 6.0f ,0.0f} },
+						{ 6.5f * 0.8f ,EnemyType::Tents,Vector2f{sinf(6.0f / 2.5f) * 6.0f ,0.0f} },
+						{ 7.5f * 0.8f ,EnemyType::Tents,Vector2f{sinf(7.0f / 2.5f) * 6.0f ,0.0f} },
 						{10.5f * 0.8f ,EnemyType::Tower,Vector2f{sinf(10.0f / 2.5f) * 6.0f ,0.0f} },
 						{11.5f * 0.8f ,EnemyType::Truck,Vector2f{sinf(11.0f / 2.5f) * 6.0f ,0.0f} },
 						{14.5f * 0.8f ,EnemyType::Truck,Vector2f{sinf(14.0f / 2.5f) * 6.0f ,0.0f} },
@@ -786,7 +786,8 @@ private:
 			false,
 
 			false,
-			
+			{}
+
 		}
 	};
 

@@ -13,10 +13,14 @@ public:
 
 
 	inline static bool DrawGizmos{ false };
-	inline static bool AllowPixelate{ true };
 	inline static float DefaultTimeScale{ 1.0f };
 	inline static int StartingStage{ 0 };
 
+#ifdef __EMSCRIPTEN__
+	inline static bool AllowPixelate{ false };
+#else
+	inline static bool AllowPixelate{ true };
+#endif
 
 	inline static constexpr bool USE_VSYNC{ true };
 	inline static constexpr char WINDOW_TITLE[] = "AfterBurner II - Julian Rijken - 1DAE12E";
@@ -33,8 +37,15 @@ public:
 	inline static constexpr int RENDER_WIDTH{ 320 };
 	inline static constexpr int RENDER_HEIGHT{ 224 };
 
-	inline static constexpr int WINDOW_WIDTH{ RENDER_WIDTH * 4};
-	inline static constexpr int WINDOW_HEIGHT{ RENDER_HEIGHT * 4 };
+
+#ifdef __EMSCRIPTEN__
+	inline static float WINDOW_SCALE{ 1.0f };
+#else
+	inline static float WINDOW_SCALE{ 4.0f };
+#endif
+
+	inline static float WINDOW_POSITION_X{ 1.0f };
+	inline static float WINDOW_POSITION_Y{ 1.0f };
 	
 
 	inline static constexpr int MAX_ENEMY_SPAWN_DISTANCE{ 160 };

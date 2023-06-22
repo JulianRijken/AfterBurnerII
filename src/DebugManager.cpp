@@ -157,7 +157,6 @@ void DebugManager::Update()
 	m_FrameTimer += Time::GetUnScaledDeltaTime();
 	if(m_FrameTimer >= FRAME_UPDATE_TIME)
 	{
-		//const std::string framesText{ std::format("FPS {}", int(std::roundf(float(m_FrameCount) / FRAME_UPDATE_TIME))) };
 		const std::string framesText{std::to_string(int(std::roundf(float(m_FrameCount) / FRAME_UPDATE_TIME))) };
 
 		m_FramesTextGoWPtr.lock()->SetText(framesText);
@@ -279,10 +278,12 @@ void DebugManager::OnKeyDown(const SDL_KeyboardEvent& e)
 		GlobalSettings::DrawGizmos = !GlobalSettings::DrawGizmos;
 	}
 
+#ifndef __EMSCRIPTEN__
 	if (Input::Compare("pixelateCamera", e))
 	{
 		GlobalSettings::AllowPixelate = !GlobalSettings::AllowPixelate;
 	}
+#endif
 
 	if (Input::Compare("toggleCurveEditor", e) && GameManager::Instance.lock()->IsGamePaused())
 	{
@@ -442,6 +443,8 @@ void DebugManager::HandleCurveEditing()
 	m_PreviewEnemy2.lock()->GetRawTransform()->SetPosition(curvePos2);
 
 
+#ifndef __EMSCRIPTEN__
+
 	m_CurvePrintTimer += Time::GetUnScaledDeltaTime();
 
 	if (m_CurvePrintTimer >= CURVE_PRINT_INTERVAL)
@@ -449,6 +452,8 @@ void DebugManager::HandleCurveEditing()
 		m_CurvePrintTimer -= CURVE_PRINT_INTERVAL;
 
 		Log() << "Editing Curve";
+
+
 		const std::string formattedText = std::format
 		(
 			"Jul::CubicCurve curve\n"
@@ -467,4 +472,7 @@ void DebugManager::HandleCurveEditing()
 		std::cout << formattedText << std::endl;
 		std::cout << "Curve Center: " << m_CurveCenter << std::endl;
 	}
+
+#endif
+
 }

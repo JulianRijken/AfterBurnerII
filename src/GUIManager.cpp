@@ -123,7 +123,7 @@ void GuiManager::OnStageChange(int stage, bool bonusStage)
 	m_StageTextWPtr.lock()->SetText(std::to_string(stage));
 
 
-	m_NextStageTextWPtr.lock()->SetText(std::format("STAGE {}", stage));
+	m_NextStageTextWPtr.lock()->SetText("STAGE " + std::to_string(stage));
 
 	Time::StartTimer(0.3f, true, GetSelfPtr(), [=](Time::Timer* timer)
 		{

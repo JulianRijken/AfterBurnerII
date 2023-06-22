@@ -154,8 +154,7 @@ public:
             else
             {
 	            const auto* component{ dynamic_cast<Component*>(objectPtr.lock().get()) };
-
-                Log(LogType::Error) << std::format("Timer can't call function with given arguments! Timer will be canceled! Timer called on: {}", component ? component->GetName(): "Not a component");
+                Log(LogType::Error) << "Timer can't call function with given arguments! Timer will be canceled! Timer called on: " << (component ? component->GetName() : "Not a component");
                 timerWPtr.lock()->Cancel();
             }
         };

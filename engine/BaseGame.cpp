@@ -5,11 +5,11 @@
 #include <algorithm>
 #include "BaseGame.h"
 
+#include "GlobalSettings.h"
+
 #ifdef __EMSCRIPTEN__
 #include "emscripten.h"
 #endif
-
-float BaseGame::SCALE{ 0.5f };
 
 BaseGame::BaseGame(const Window& window)
     : m_Window{window}
@@ -222,6 +222,11 @@ void BaseGame::Loop()
                 viewportX, viewportY,
                 viewportWidth, viewportHeight
             );
+
+            GlobalSettings::WINDOW_POSITION_X = viewportX;
+            GlobalSettings::WINDOW_POSITION_Y = viewportY;
+
+            GlobalSettings::WINDOW_SCALE = minScale;
 
             break;
         }

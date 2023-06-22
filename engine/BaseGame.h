@@ -52,7 +52,6 @@ public:
         return m_Viewport;
     }
 
-    static float SCALE;
 private:
     // DATA MEMBERS
     // The window properties

@@ -10,7 +10,11 @@ int main(int argc, char *argv[])
     auto path = std::filesystem::current_path();
     std::filesystem::current_path(path / "resources");
     
-    Game pGame{Window{ GlobalSettings::WINDOW_TITLE, GlobalSettings::WINDOW_WIDTH , GlobalSettings::WINDOW_HEIGHT,GlobalSettings::USE_VSYNC}};
+    Game pGame{Window
+    	{
+    		GlobalSettings::WINDOW_TITLE, GlobalSettings::RENDER_WIDTH * GlobalSettings::WINDOW_SCALE ,
+    		GlobalSettings::RENDER_HEIGHT * GlobalSettings::WINDOW_SCALE,GlobalSettings::USE_VSYNC
+    	}};
     pGame.Run();
 
     return 0;

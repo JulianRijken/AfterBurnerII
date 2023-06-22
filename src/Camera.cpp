@@ -116,7 +116,13 @@ void Camera::Render() const
 		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
 
-		glViewport(0, 0, GlobalSettings::WINDOW_WIDTH, GlobalSettings::WINDOW_HEIGHT);
+		glViewport
+		(
+			GlobalSettings::WINDOW_POSITION_X,
+			GlobalSettings::WINDOW_POSITION_Y,
+			GlobalSettings::RENDER_WIDTH * GlobalSettings::WINDOW_SCALE,
+			GlobalSettings::RENDER_HEIGHT * GlobalSettings::WINDOW_SCALE
+		);
 
 		glMatrixMode(GL_PROJECTION);
 		glLoadIdentity();
