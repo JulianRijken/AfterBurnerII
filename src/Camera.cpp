@@ -62,11 +62,15 @@ void Camera::Render() const
 	std::ranges::sort(renderers, compareDistance);
 	std::ranges::stable_sort(renderers, compareLayer);
 
+#ifndef __EMSCRIPTEN__
+
 	if (m_Pixelate && GlobalSettings::AllowPixelate)
 	{
 		// Set viewport to render size
 		glViewport(0, 0, GlobalSettings::RENDER_WIDTH, GlobalSettings::RENDER_HEIGHT);
 	}
+#endif
+
 
 	for (const Renderer* rendererPtr : renderers)
 	{
@@ -108,6 +112,7 @@ void Camera::Render() const
 
 	}
 
+#ifndef __EMSCRIPTEN__
 	if (m_Pixelate && GlobalSettings::AllowPixelate)
 	{
 		glBindTexture(GL_TEXTURE_2D, m_RenderTexturePtr->GetID());
@@ -130,6 +135,7 @@ void Camera::Render() const
 
 		m_RenderTexturePtr->Draw(Rectf{ 0,0,1,1 });
 	}
+#endif
 
 	GlobalSettings::SetRenderOrthographic(m_OrthoSize);
 	Gizmos::DrawAllGizmos(this);
